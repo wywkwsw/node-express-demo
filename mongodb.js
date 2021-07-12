@@ -1,4 +1,4 @@
-var {MongoClient} = require('mongodb');
+var {MongoClient,Db} = require('mongodb');
 var url = "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false";
  
 // MongoClient.connect(url, function(err, db) {
@@ -15,21 +15,21 @@ const client = new MongoClient(url, {
     try {
       await client.connect();
       const database = client.db('local');
-      const collection = database.collection('node_demo');
-      // Query for a movie that has the title 'Back to the Future'
-      const query = { label:"定量" };
-      const movie = await collection.findOne({});
-        // Get the documents collection
-        // Insert some documents
-        // collection.insertMany([{ a: 1 }, { a: 2 }, { a: 3 }], function(err, result) {
-        //   console.log('Inserted 3 documents into the collection');
-        // });
-        collection.find({c:'iasdasj'}).toArray((err,docs) => {
-          console.log('docs',docs);
+      const newCD = database.createCollection('newCD111')
+      // const collection = database.collection('node_demo');
+      // // Query for a movie that has the title 'Back to the Future'
+      // const query = { label:"定量" };
+      // const movie = await collection.findOne({});
+      //   // Get the documents collection
+      //   // Insert some documents
+      //   // collection.insertMany([{ a: 1 }, { a: 2 }, { a: 3 }], function(err, result) {
+      //   //   console.log('Inserted 3 documents into the collection');
+      //   // });
+      //   collection.find({c:'iasdasj'}).toArray((err,docs) => {
+      //     console.log('docs',docs);
           
-        })
-        collection.deleteOne({ a: 1 })
-    //   console.log('movie',movies);
+      //   })
+      //   collection.deleteOne({ a: 1 })
     } finally {
       // Ensures that the client will close when you finish/error
       // await client.close();
